@@ -1,0 +1,25 @@
+.button {
+  border-radius: var(--borderRadiusDefault);
+  background-color: var(--secondary);
+  border-color: transparent;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  color: var(--white);
+  font-weight: 600;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.v-align-middle {
+  vertical-align: middle;
+}
+
+.prefixIcon {
+  margin-right: 5px;
+  @extend .v-align-middle;
+}
+
+.suffixIcon {
+  margin-left: 5px;
+  @extend .v-align-middle;
+}

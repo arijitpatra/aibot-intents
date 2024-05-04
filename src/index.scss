@@ -1,0 +1,28 @@
+:root {
+  --gray: #efefef;
+  --grayDark: #888888;
+  --charcoal: #313131;
+  --primary: #5c49cb;
+  --primaryDark: #5241b4;
+  --secondary: #fb5c9d;
+  --tertiary: #e1dcff;
+  --white: #ffffff;
+  --lightGreen: #36c136;
+  --lightRed: #cc5636;
+  --red: #d91616;
+  --shadow: #c1c1c1;
+  --borderRadiusDefault: 10px;
+  --fontWeightNormal: 400;
+  --fontWeightBold: 600;
+
+  font-family: "Figtree", system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+
+  background-color: var(--gray);
+  color: var(--charcoal);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

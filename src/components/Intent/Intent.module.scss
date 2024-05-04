@@ -1,0 +1,35 @@
+.intent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.name {
+  font-size: 1.5rem;
+  font-weight: var(--fontWeightBold);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+}
+
+.description {
+  color: var(--grayDark);
+}
+
+.example {
+  margin-top: 24px;
+  > div {
+    margin-bottom: 10px;
+  }
+}
+
+.checkmark {
+  margin-left: 5px;
+  color: var(--lightGreen);
+  font-size: 2rem;
+}
+
+.reply {
+  font-weight: var(--fontWeightBold);
+  margin-top: 10px;
+}
