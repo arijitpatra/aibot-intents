@@ -24,7 +24,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 100px;
+  gap: 50px;
 }
 
 .bulkSelection {
@@ -39,4 +39,10 @@
   &:hover {
     color: var(--primaryDark);
   }
+}
+
+.intentsWrapper {
+  display: grid;
+  grid-template-columns: auto;
+  gap: 24px;
 }

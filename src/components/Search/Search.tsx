@@ -21,7 +21,7 @@ const Search = ({
   return (
     <input
       id={id}
-      className={`${styles.search} ${className}`}
+      className={`${styles.search} ${className ?? ""}`}
       data-testid={testId}
       type="search"
       aria-description="search"

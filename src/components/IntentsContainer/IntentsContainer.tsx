@@ -77,14 +77,16 @@ const IntentsContainer = () => {
 
       {filteredIntents.length === 0 ? { BLANK_STATE_MESSAGE } : null}
 
-      {filteredIntents?.map((intent) => (
-        <Intent
-          key={intent.id}
-          data={intent}
-          onCtaClick={handleCtaToggle}
-          isSelected={selectedIntentIds.includes(intent.id) || false}
-        />
-      ))}
+      <div className={`${styles.intentsWrapper}`}>
+        {filteredIntents?.map((intent) => (
+          <Intent
+            key={intent.id}
+            data={intent}
+            onCtaClick={handleCtaToggle}
+            isSelected={selectedIntentIds.includes(intent.id) || false}
+          />
+        ))}
+      </div>
     </>
   );
 };

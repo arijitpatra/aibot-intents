@@ -23,7 +23,7 @@ const Button = ({
   return (
     <button
       id={id}
-      className={`${styles.button} ${className}`}
+      className={`${styles.button} ${className ?? ""}`}
       data-testid={testId}
       onClick={onBtnClick}
     >

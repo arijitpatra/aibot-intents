@@ -19,9 +19,9 @@ const Card = ({
   return (
     <section
       id={id}
-      className={`${styles.card} ${
-        isSelected ? styles.selected : ""
-      } ${className}`}
+      className={`${styles.card} ${isSelected ? styles.selected : ""} ${
+        className ?? ""
+      }`}
       data-testid={testId}
     >
       {children}
