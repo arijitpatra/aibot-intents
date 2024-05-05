@@ -3,23 +3,39 @@
   justify-content: space-between;
   position: sticky;
   top: 0;
-  padding: 1rem 0 0.5rem 0;
+  padding: 1rem 0;
   background-color: var(--gray);
+  flex-direction: column;
+  gap: 10px;
 
-  & > input {
-    width: 70%;
+  @media screen and (min-width: 1280px) {
+    flex-direction: row;
   }
 
-  & > span {
-    color: var(--primary);
-    font-weight: var(--fontWeightBold);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-
-    &:hover {
-      color: var(--primaryDark);
+  & > input {
+    @media screen and (min-width: 1280px) {
+      width: 70%;
     }
+  }
+}
+
+.selectionControls {
+  font-weight: var(--fontWeightBold);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 100px;
+}
+
+.bulkSelection {
+  color: var(--primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  text-decoration: underline;
+
+  &:hover {
+    color: var(--primaryDark);
   }
 }

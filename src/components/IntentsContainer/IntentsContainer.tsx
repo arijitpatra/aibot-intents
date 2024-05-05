@@ -3,10 +3,13 @@ import styles from "./IntentsContainer.module.scss";
 import intents from "../../../public/intents.json";
 import { FaListUl } from "react-icons/fa6";
 import { ChangeEvent, useState } from "react";
-import { ADD_ALL, REMOVE_ALL } from "../../constants";
+import {
+  ADD_ALL,
+  REMOVE_ALL,
+  ADDED,
+  BLANK_STATE_MESSAGE,
+} from "../../constants";
 import Search from "../Search";
-
-console.log(intents);
 
 const IntentsContainer = () => {
   // TODO: alternate approach instead of array - Set or Object
@@ -49,12 +52,26 @@ const IntentsContainer = () => {
   return (
     <>
       <div className={`${styles.searchAndSelection}`}>
-        <Search onSearchChange={handleSearch} value={searchValue} />
-        <span onClick={handleBulkSelectionToggle}>
-          <FaListUl />
-          {selectedIntentIds.length !== intents.length ? ADD_ALL : REMOVE_ALL}
-        </span>
+        <Search
+          onSearchChange={handleSearch}
+          value={searchValue}
+          placeholder="Type to search for intent / input / reply..."
+        />
+        <div className={`${styles.selectionControls}`}>
+          <div>
+            {selectedIntentIds.length} / {intents.length} <small>{ADDED}</small>
+          </div>
+          <div
+            onClick={handleBulkSelectionToggle}
+            className={`${styles.bulkSelection}`}
+          >
+            <FaListUl />
+            {selectedIntentIds.length !== intents.length ? ADD_ALL : REMOVE_ALL}
+          </div>
+        </div>
       </div>
+
+      {filteredIntents.length === 0 ? { BLANK_STATE_MESSAGE } : null}
 
       {filteredIntents?.map((intent) => (
         <Intent
