@@ -59,7 +59,11 @@ const IntentsContainer = () => {
         />
         <div className={`${styles.selectionControls}`}>
           <div>
-            {selectedIntentIds.length} / {intents.length} <small>{ADDED}</small>
+            <b>{selectedIntentIds.length}</b>
+            <small>
+              {" "}
+              / {intents.length} {ADDED}
+            </small>
           </div>
           <div
             onClick={handleBulkSelectionToggle}

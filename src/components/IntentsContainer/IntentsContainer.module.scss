@@ -20,7 +20,7 @@
 }
 
 .selectionControls {
-  font-weight: var(--fontWeightBold);
+  color: var(--grayDark);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -29,6 +29,7 @@
 
 .bulkSelection {
   color: var(--primary);
+  font-weight: var(--fontWeightBold);
   cursor: pointer;
   display: flex;
   align-items: center;

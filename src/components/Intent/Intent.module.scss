@@ -43,6 +43,8 @@
 }
 
 .reply {
-  font-weight: var(--fontWeightBold);
+  display: flex;
+  align-items: center;
   margin-top: 10px;
+  gap: 3px;
 }
