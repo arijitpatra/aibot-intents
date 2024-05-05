@@ -1,4 +1,25 @@
 .searchAndSelection {
   display: flex;
   justify-content: space-between;
+  position: sticky;
+  top: 0;
+  padding: 1rem 0 0.5rem 0;
+  background-color: var(--gray);
+
+  & > input {
+    width: 70%;
+  }
+
+  & > span {
+    color: var(--primary);
+    font-weight: var(--fontWeightBold);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    &:hover {
+      color: var(--primaryDark);
+    }
+  }
 }

@@ -4,27 +4,26 @@ import { FaCircleCheck, FaPlus, FaRegTrashCan } from "react-icons/fa6";
 import Button from "../Button";
 import { IntentType } from "../../types";
 import styles from "./Intent.module.scss";
-import { useState } from "react";
 import { ADD, REMOVE } from "../../constants";
 
 interface IntentProps {
   data: IntentType;
+  isSelected: boolean;
+  onCtaClick: (id: string) => void;
 }
 
-const Intent = ({ data }: IntentProps) => {
-  const [isAdded, setIsAdded] = useState(false);
-
-  const handleBtnClick = () => {
-    setIsAdded((prevState) => !prevState);
+const Intent = ({ data, isSelected, onCtaClick }: IntentProps) => {
+  const handleCtaClick = () => {
+    onCtaClick(data.id);
   };
 
   return (
-    <Card>
+    <Card isSelected={isSelected}>
       <div className={`${styles.intent}`}>
         <div>
           <div className={`${styles.name}`}>
             {data.name}
-            {isAdded ? (
+            {isSelected ? (
               <FaCircleCheck className={`${styles.checkmark}`} />
             ) : null}
           </div>
@@ -42,9 +41,10 @@ const Intent = ({ data }: IntentProps) => {
         </div>
         <div>
           <Button
-            label={isAdded ? REMOVE : ADD}
-            suffixIcon={isAdded ? <FaRegTrashCan /> : <FaPlus />}
-            onButtonClick={handleBtnClick}
+            className={`${styles.cta}`}
+            label={isSelected ? REMOVE : ADD}
+            suffixIcon={isSelected ? <FaRegTrashCan /> : <FaPlus />}
+            onBtnClick={handleCtaClick}
           />
         </div>
       </div>

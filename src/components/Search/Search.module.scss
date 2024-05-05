@@ -1,0 +1,11 @@
+.search {
+  border: transparent;
+  padding: 1rem;
+  font-family: inherit;
+  border-radius: var(--borderRadiusDefault);
+
+  &:focus,
+  &:hover {
+    outline: 1px solid var(--primaryDark);
+  }
+}

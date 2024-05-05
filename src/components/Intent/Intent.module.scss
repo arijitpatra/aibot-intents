@@ -1,7 +1,20 @@
 .intent {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  gap: 30px;
+
+  @media screen and (min-width: 1280px) {
+    align-items: center;
+    gap: 0;
+    flex-direction: row;
+  }
+}
+
+.cta {
+  @media screen and (max-width: 1280px) {
+    width: 100%;
+  }
 }
 
 .name {
@@ -18,15 +31,15 @@
 
 .example {
   margin-top: 24px;
-  > div {
+  & > div {
     margin-bottom: 10px;
   }
 }
 
 .checkmark {
   margin-left: 5px;
-  color: var(--lightGreen);
-  font-size: 2rem;
+  color: var(--darkGreen);
+  font-size: 1.5rem;
 }
 
 .reply {

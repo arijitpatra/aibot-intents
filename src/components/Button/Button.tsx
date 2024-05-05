@@ -8,7 +8,7 @@ interface ButtonProps {
   label: string;
   prefixIcon?: ReactElement;
   suffixIcon?: ReactElement;
-  onButtonClick: MouseEventHandler<HTMLButtonElement>;
+  onBtnClick: MouseEventHandler<HTMLButtonElement>;
 }
 
 const Button = ({
@@ -18,14 +18,14 @@ const Button = ({
   label,
   prefixIcon,
   suffixIcon,
-  onButtonClick,
+  onBtnClick,
 }: ButtonProps) => {
   return (
     <button
       id={id}
       className={`${styles.button} ${className}`}
       data-testid={testId}
-      onClick={onButtonClick}
+      onClick={onBtnClick}
     >
       {prefixIcon ? (
         <span className={`${styles.prefixIcon}`}>{prefixIcon}</span>
