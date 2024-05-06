@@ -6,13 +6,9 @@ interface ChipProps {
   label: string;
 }
 
-const Chip = ({ id, className, testId, label }: ChipProps) => {
+const Chip = ({ id, className = "", testId, label }: ChipProps) => {
   return (
-    <div
-      id={id}
-      className={`${styles.chip} ${className ?? ""}`}
-      data-testid={testId}
-    >
+    <div id={id} className={`${styles.chip} ${className}`} data-testid={testId}>
       {label}
     </div>
   );

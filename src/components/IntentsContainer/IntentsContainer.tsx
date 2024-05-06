@@ -46,7 +46,12 @@ const IntentsContainer = () => {
 
   const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
-    setSearchValue(value);
+
+    // TODO: move to an util fn
+    const regex = /^[a-zA-Z0-9]/;
+    if (regex.test(value) || value === "") {
+      setSearchValue(value);
+    }
   };
 
   return (
@@ -75,7 +80,7 @@ const IntentsContainer = () => {
         </div>
       </div>
 
-      {filteredIntents.length === 0 ? { BLANK_STATE_MESSAGE } : null}
+      {filteredIntents.length === 0 ? BLANK_STATE_MESSAGE : null}
 
       <div className={`${styles.intentsWrapper}`}>
         {filteredIntents?.map((intent) => (

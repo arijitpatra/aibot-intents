@@ -12,7 +12,7 @@ interface SearchProps {
 
 const Search = ({
   id,
-  className,
+  className = "",
   testId,
   placeholder = "Type to search...",
   onSearchChange,
@@ -21,7 +21,7 @@ const Search = ({
   return (
     <input
       id={id}
-      className={`${styles.search} ${className ?? ""}`}
+      className={`${styles.search} ${className}`}
       data-testid={testId}
       type="search"
       aria-description="search"
