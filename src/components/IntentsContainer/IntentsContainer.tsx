@@ -60,10 +60,10 @@ const IntentsContainer = () => {
         <Search
           onSearchChange={handleSearch}
           value={searchValue}
-          placeholder="Type to search for intent / input / reply..."
+          placeholder="Type to search for intent / expression / reply..."
         />
         <div className={`${styles.selectionControls}`}>
-          <div>
+          <div data-testid="bulkSelectionCount">
             <b>{selectedIntentIds.length}</b>
             <small>
               {" "}
@@ -73,6 +73,7 @@ const IntentsContainer = () => {
           <div
             onClick={handleBulkSelectionToggle}
             className={`${styles.bulkSelection}`}
+            data-testid="bulkSelection"
           >
             <FaListUl />
             {selectedIntentIds.length !== intents.length ? ADD_ALL : REMOVE_ALL}
