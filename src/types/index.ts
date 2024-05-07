@@ -13,7 +13,7 @@ interface Reply {
   text: string;
 }
 
-export interface IntentType {
+export interface IntentResponse {
   id: string;
   name: string;
   description: string;

@@ -26,12 +26,12 @@ describe(
       cy.get('[data-testid="bulkSelectionCount"]').contains(
         `0 / ${intentsData.length} added`
       );
-      cy.get("button").click({ multiple: true });
+      cy.get("button").click({ multiple: true }); // TODO
       cy.get('[data-testid="bulkSelection"]').contains("Remove all");
       cy.get('[data-testid="bulkSelectionCount"]').contains(
         `${intentsData.length} / ${intentsData.length} added`
       );
-      cy.get("button").click({ multiple: true });
+      cy.get("button").click({ multiple: true }); // TODO
       cy.get('[data-testid="bulkSelection"]').contains("Add all");
       cy.get('[data-testid="bulkSelectionCount"]').contains(
         `0 / ${intentsData.length} added`

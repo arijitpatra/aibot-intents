@@ -7,17 +7,17 @@ import {
   FaAngleRight,
 } from "react-icons/fa6";
 import Button from "../Button";
-import { IntentType } from "../../types";
+import { IntentResponse } from "../../types";
 import styles from "./Intent.module.scss";
 import { ADD, REMOVE } from "../../constants";
 
 interface IntentProps {
-  data: IntentType;
-  isSelected: boolean;
+  data: IntentResponse;
+  isSelected?: boolean;
   onCtaClick: (id: string) => void;
 }
 
-const Intent = ({ data, isSelected, onCtaClick }: IntentProps) => {
+const Intent = ({ data, isSelected = false, onCtaClick }: IntentProps) => {
   const handleCtaClick = () => {
     onCtaClick(data.id);
   };
@@ -29,7 +29,10 @@ const Intent = ({ data, isSelected, onCtaClick }: IntentProps) => {
           <div className={`${styles.name}`}>
             {data.name}
             {isSelected ? (
-              <FaCircleCheck className={`${styles.checkmark}`} />
+              <FaCircleCheck
+                data-testid={`checkmark-${data.id}`}
+                className={`${styles.checkmark}`}
+              />
             ) : null}
           </div>
           <small className={`${styles.description}`}>{data.description}</small>
@@ -55,6 +58,7 @@ const Intent = ({ data, isSelected, onCtaClick }: IntentProps) => {
             label={isSelected ? REMOVE : ADD}
             suffixIcon={isSelected ? <FaRegTrashCan /> : <FaPlus />}
             onBtnClick={handleCtaClick}
+            testId={`cta-${data.id}`}
           />
         </div>
       </div>
