@@ -12,6 +12,10 @@ describe("Unit test for Intent:", () => {
     onCtaClick: mockFn,
   };
 
+  beforeEach(() => {
+    vi.resetAllMocks();
+  });
+
   test("name is displayed", () => {
     render(<Intent {...intentPropsBase} />);
     const intentName = screen.getByText(data.name);

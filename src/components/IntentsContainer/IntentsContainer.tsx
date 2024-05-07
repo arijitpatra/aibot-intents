@@ -8,6 +8,7 @@ import {
   REMOVE_ALL,
   ADDED,
   BLANK_STATE_MESSAGE,
+  PLACEHOLDER_FOR_INTENT_SEARCH_INPUT,
 } from "../../constants";
 import Search from "../Search";
 
@@ -60,10 +61,10 @@ const IntentsContainer = () => {
         <Search
           onSearchChange={handleSearch}
           value={searchValue}
-          placeholder="Type to search for intent / expression / reply..."
+          placeholder={`${PLACEHOLDER_FOR_INTENT_SEARCH_INPUT}...`}
         />
         <div className={`${styles.selectionControls}`}>
-          <div data-testid="bulkSelectionCount">
+          <div data-testid="selectionCount">
             <b>{selectedIntentIds.length}</b>
             <small>
               {" "}
@@ -73,7 +74,7 @@ const IntentsContainer = () => {
           <div
             onClick={handleBulkSelectionToggle}
             className={`${styles.bulkSelection}`}
-            data-testid="bulkSelection"
+            data-testid="bulkSelectionToggle"
           >
             <FaListUl />
             {selectedIntentIds.length !== intents.length ? ADD_ALL : REMOVE_ALL}

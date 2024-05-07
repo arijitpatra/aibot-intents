@@ -11,6 +11,10 @@ describe("Unit test for Button:", () => {
     onBtnClick: mockFn,
   };
 
+  beforeEach(() => {
+    vi.resetAllMocks();
+  });
+
   test("components uses testId correctly", () => {
     const testId = "btn-test-1";
     render(<Button {...buttonPropsBase} testId={testId} />);
