@@ -7,7 +7,7 @@ import {
   ADD_ALL,
   REMOVE_ALL,
   ADDED,
-  BLANK_STATE_MESSAGE,
+  NO_INTENTS_MESSAGE,
   PLACEHOLDER_FOR_INTENT_SEARCH_INPUT,
 } from "../../constants";
 import Search from "../Search";
@@ -82,7 +82,7 @@ const IntentsContainer = () => {
         </div>
       </div>
 
-      {filteredIntents.length === 0 ? BLANK_STATE_MESSAGE : null}
+      {filteredIntents.length === 0 ? NO_INTENTS_MESSAGE : null}
 
       <div className={`${styles.intentsWrapper}`}>
         {filteredIntents?.map((intent) => (

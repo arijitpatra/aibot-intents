@@ -8,50 +8,64 @@ describe(
     let intentsData;
 
     beforeEach(() => {
-      // cy.visit("/");
       cy.fixture("../../public/intents.json").then((data) => {
         intentsData = data;
         cy.visit("/");
       });
     });
 
-    it("successfully loads", () => {});
-
-    it("shows the loader", () => {
+    it("shows the loader with icon & message", () => {
       cy.contains("⌛ Loading...");
     });
 
-    it("manually adding/removing all the intents", () => {
-      cy.get('[data-testid="bulkSelection"]').contains("Add all");
-      cy.get('[data-testid="bulkSelectionCount"]').contains(
+    it("manually adding/removing all the intents works properly", () => {
+      cy.get('[data-testid="bulkSelectionToggle"]').contains("Add all");
+      cy.get('[data-testid="selectionCount"]').contains(
         `0 / ${intentsData.length} added`
       );
-      cy.get("button").click({ multiple: true }); // TODO
-      cy.get('[data-testid="bulkSelection"]').contains("Remove all");
-      cy.get('[data-testid="bulkSelectionCount"]').contains(
+
+      intentsData.forEach((intent) => {
+        cy.get(`[data-testid="cta-${intent.id}"]`).click();
+      });
+      cy.get('[data-testid="bulkSelectionToggle"]').contains("Remove all");
+      cy.get('[data-testid="selectionCount"]').contains(
         `${intentsData.length} / ${intentsData.length} added`
       );
-      cy.get("button").click({ multiple: true }); // TODO
-      cy.get('[data-testid="bulkSelection"]').contains("Add all");
-      cy.get('[data-testid="bulkSelectionCount"]').contains(
+
+      intentsData.forEach((intent) => {
+        cy.get(`[data-testid="cta-${intent.id}"]`).click();
+      });
+      cy.get('[data-testid="bulkSelectionToggle"]').contains("Add all");
+      cy.get('[data-testid="selectionCount"]').contains(
         `0 / ${intentsData.length} added`
       );
-    });
-
-    it("search for an intent name", () => {
-      const searchText = intentsData[2].trainingData.expressions[2].text;
-      cy.get('input[type="search"]')
-        .type(searchText)
-        .should("have.value", searchText);
-
-      cy.contains(intentsData[2].name);
     });
 
     it("selects all items from the bulk select 'Add All' on top", () => {
-      cy.get('[data-testid="bulkSelection"]').click();
-      cy.get('[data-testid="bulkSelectionCount"]').contains(
+      cy.get('[data-testid="bulkSelectionToggle"]').click();
+      cy.get('[data-testid="selectionCount"]').contains(
         `${intentsData.length} / ${intentsData.length} added`
       );
+    });
+
+    it("search works properly and shows the card with proper reply based on the expression", () => {
+      const searchText = intentsData[2].trainingData.expressions[2].text;
+      cy.get(
+        'input[placeholder="🔍 Type to search for intent / expression / reply..."]'
+      )
+        .type(searchText)
+        .should("have.value", searchText);
+
+      cy.contains(`"${intentsData[2].reply.text}"`);
+    });
+
+    it("shows a message if search returns no result", () => {
+      const searchText = "hduhje984b8n3uu93n8u39un3fhskapmzbcx93";
+      cy.get(
+        'input[placeholder="🔍 Type to search for intent / expression / reply..."]'
+      ).type(searchText);
+
+      cy.contains("No matching intents!");
     });
   }
 );
