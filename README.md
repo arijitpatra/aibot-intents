@@ -2,6 +2,8 @@
 
 The application lists a set of AI intents with the ability to search an intent or select intents.
 
+See it here: https://arijitpatra.in/ai-intents/
+
 Screenshot:
 
 ![screenshot](Screenshot.png)
