@@ -1,13 +1,13 @@
 import { screen, render, fireEvent } from "@testing-library/react";
-import Intent from "./Intent";
-import intentsData from "../../../public/intents.json";
+import Intent, { IntentProps } from "./Intent";
+import intentsData from "../../intents.json";
 import { vi } from "vitest";
 
 describe("Unit test for Intent:", () => {
   const mockFn = vi.fn();
   const data = intentsData[0];
 
-  const intentPropsBase = {
+  const intentPropsBase: IntentProps = {
     data: data,
     onCtaClick: mockFn,
   };

@@ -1,17 +1,17 @@
 import { screen, render } from "@testing-library/react";
-import Chip from "./Chip";
+import Chip, { ChipProps } from "./Chip";
 
 describe("Unit test for Chip:", () => {
-  const chipPropBase = {
+  const chipPropsBase: ChipProps = {
     label: "I am chip",
   };
 
   beforeEach(() => {
-    render(<Chip {...chipPropBase} />);
+    render(<Chip {...chipPropsBase} />);
   });
 
   test("renders the label correctly", () => {
-    const label = screen.getByText(chipPropBase.label);
+    const label = screen.getByText(chipPropsBase.label);
     expect(label).toBeInTheDocument();
   });
 });

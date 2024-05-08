@@ -1,7 +1,7 @@
 import Intent from "../Intent";
 import styles from "./IntentsContainer.module.scss";
-import intents from "../../../public/intents.json";
-import { ChangeEvent, useDeferredValue, useMemo, useState } from "react";
+import intents from "../../intents.json";
+import { ChangeEvent, useMemo, useState } from "react";
 import {
   NO_INTENTS_MESSAGE,
   PLACEHOLDER_FOR_INTENT_SEARCH_INPUT,
@@ -16,12 +16,12 @@ const IntentsContainer = () => {
   const [selectedIntentIds, setSelectedIntentIds] = useState<string[]>([]);
   const [searchValue, setSearchValue] = useState("");
   const debouncedSearchValue = useDebounce(searchValue);
-  const deferredSearchValue = useDeferredValue(debouncedSearchValue);
 
-  const searchValueTrimmedAndLowerCase = deferredSearchValue
+  const searchValueTrimmedAndLowerCase = debouncedSearchValue
     .trim()
     .toLowerCase();
 
+  // filter matching intent name / expression / reply based on search query
   const filteredIntents = useMemo(
     () =>
       intents.filter(
@@ -39,6 +39,7 @@ const IntentsContainer = () => {
     [searchValueTrimmedAndLowerCase]
   );
 
+  // for add/remove button in the card
   const handleCtaToggle = (intentId: string) => {
     if (selectedIntentIds.includes(intentId)) {
       setSelectedIntentIds((prevState) =>
@@ -49,6 +50,7 @@ const IntentsContainer = () => {
     }
   };
 
+  // for add/remove all
   const handleBulkSelectionToggle = () => {
     if (selectedIntentIds.length !== intents.length) {
       const allIntentIds = intents.map((intent) => intent.id);

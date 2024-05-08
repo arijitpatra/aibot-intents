@@ -1,5 +1,6 @@
 import styles from "./Chip.module.scss";
-interface ChipProps {
+
+export interface ChipProps {
   id?: string;
   className?: string;
   testId?: string;

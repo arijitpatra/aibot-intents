@@ -1,6 +1,6 @@
 import { screen, render, fireEvent } from "@testing-library/react";
 import IntentsContainer from "./IntentsContainer";
-import intentsData from "../../../public/intents.json";
+import intentsData from "../../intents.json";
 import {
   ADD,
   ADD_ALL,

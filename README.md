@@ -1,33 +1,54 @@
-# React + TypeScript + Vite
+# AI Intents
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The application lists a set of AI intents with the ability to search an intent or select intents.
 
-Currently, two official plugins are available:
+Screenshot:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+![screenshot](Screenshot.png)
 
-## Expanding the ESLint configuration
+This project is made using ReactJS, Vite, TypeScript, CSS modules, Vitest, Testing Library React, Cypress.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## After thoughts
 
-- Configure the top-level `parserOptions` property like this:
+Used Vite (React/TypeScript) to create the application since it is the good practice.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: "latest",
-    sourceType: "module",
-    project: ["./tsconfig.json", "./tsconfig.node.json"],
-    tsconfigRootDir: __dirname,
-  },
-};
-```
+I have used an array to handle the selection logic, other alternative data structure could be Set or Object.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+The search is debounced and it searches across intent name or expressions or reply.
+
+For testing used Vitest and testing-library/react for unit tests and Cypress for e2e.
+
+Further improvement could be:
+
+- Adding ErrorBoundary
+- Moving the design system related components to a separate repo
+- Adding more tests
+- Accessing the intents/Search via API
+- The code structure/architecture could be updated if the requirements or scope changes
+
+Enjoyed working on the challenge... thank you! 😊
+
+## Installation
+
+Run `npm install`
+
+## Running the app
+
+Run `npm run dev`, open localhost (it should be 5173 by default, check the port number in the terminal) in your browser to enjoy the app! 🚀
+
+## Running unit tests
+
+Run `npm run test`
+
+## Running e2e tests
+
+Run `npm run cy:open` (baseUrl has been configured as "http://localhost:5173")
+
+#
+
+#
+
+#
 
 # ultimate.ai Frontend-Challenge
 

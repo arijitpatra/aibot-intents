@@ -8,7 +8,7 @@ describe(
     let intentsData;
 
     beforeEach(() => {
-      cy.fixture("../../public/intents.json").then((data) => {
+      cy.fixture("../../src/intents.json").then((data) => {
         intentsData = data;
         cy.visit("/");
       });

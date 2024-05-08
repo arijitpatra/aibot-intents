@@ -7,7 +7,7 @@ import styles from "./Intent.module.scss";
 import { ADD, REMOVE } from "../../constants";
 import Reply from "../Reply";
 
-interface IntentProps {
+export interface IntentProps {
   data: IntentResponse;
   isSelected?: boolean;
   onCtaClick: (id: string) => void;
