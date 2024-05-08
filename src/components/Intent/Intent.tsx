@@ -1,15 +1,11 @@
 import Card from "../Card";
 import Chip from "../Chip";
-import {
-  FaCircleCheck,
-  FaPlus,
-  FaRegTrashCan,
-  FaAngleRight,
-} from "react-icons/fa6";
+import { FaCircleCheck, FaPlus, FaRegTrashCan } from "react-icons/fa6";
 import Button from "../Button";
 import { IntentResponse } from "../../types";
 import styles from "./Intent.module.scss";
 import { ADD, REMOVE } from "../../constants";
+import Reply from "../Reply";
 
 interface IntentProps {
   data: IntentResponse;
@@ -43,13 +39,7 @@ const Intent = ({ data, isSelected = false, onCtaClick }: IntentProps) => {
                 <Chip key={expression.id} label={expression.text} />
               ))}
             </div>
-            <div className={`${styles.reply}`}>
-              <FaAngleRight />
-              <b>
-                <i>AI:</i>
-              </b>
-              {`"${data.reply.text}"`}
-            </div>
+            <Reply text={data.reply.text} />
           </div>
         </div>
         <div>

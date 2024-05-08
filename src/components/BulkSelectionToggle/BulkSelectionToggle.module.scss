@@ -1,0 +1,13 @@
+.bulkSelection {
+  color: var(--primary);
+  font-weight: var(--fontWeightBold);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  text-decoration: underline;
+
+  &:hover {
+    color: var(--primaryDark);
+  }
+}

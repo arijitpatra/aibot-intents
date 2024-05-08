@@ -6,7 +6,7 @@ interface SearchProps {
   className?: string;
   testId?: string;
   placeholder?: string;
-  onSearchChange: ChangeEventHandler<HTMLInputElement>;
+  onSearch: ChangeEventHandler<HTMLInputElement>;
   value: string;
 }
 
@@ -15,7 +15,7 @@ const Search = ({
   className = "",
   testId,
   placeholder = "Type to search...",
-  onSearchChange,
+  onSearch,
   value,
 }: SearchProps) => {
   return (
@@ -27,7 +27,7 @@ const Search = ({
       aria-description="search"
       tabIndex={0}
       placeholder={`🔍 ${placeholder}`}
-      onChange={onSearchChange}
+      onChange={onSearch}
       value={value}
     />
   );

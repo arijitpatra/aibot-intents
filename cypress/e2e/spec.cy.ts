@@ -49,7 +49,7 @@ describe(
     });
 
     it("search works properly and shows the card with proper reply based on the expression", () => {
-      const searchText = intentsData[2].trainingData.expressions[2].text;
+      const searchText = intentsData[2].trainingData.expressions[0].text;
       cy.get(
         'input[placeholder="🔍 Type to search for intent / expression / reply..."]'
       )

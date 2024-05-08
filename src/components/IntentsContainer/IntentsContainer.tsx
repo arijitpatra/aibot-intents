@@ -1,30 +1,42 @@
 import Intent from "../Intent";
 import styles from "./IntentsContainer.module.scss";
 import intents from "../../../public/intents.json";
-import { FaListUl } from "react-icons/fa6";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useDeferredValue, useMemo, useState } from "react";
 import {
-  ADD_ALL,
-  REMOVE_ALL,
-  ADDED,
   NO_INTENTS_MESSAGE,
   PLACEHOLDER_FOR_INTENT_SEARCH_INPUT,
 } from "../../constants";
 import Search from "../Search";
+import { hasNoSpecialCharacters } from "../../utils";
+import SelectionCount from "../SelectionCount";
+import BulkSelectionToggle from "../BulkSelectionToggle";
+import { useDebounce } from "../../hooks";
 
 const IntentsContainer = () => {
-  // TODO: alternate approach instead of array - Set or Object
   const [selectedIntentIds, setSelectedIntentIds] = useState<string[]>([]);
   const [searchValue, setSearchValue] = useState("");
+  const debouncedSearchValue = useDebounce(searchValue);
+  const deferredSearchValue = useDeferredValue(debouncedSearchValue);
 
-  // TODO: '?' in the searchValue can cause error like - Invalid regular expression: /?/: Nothing to repeat
-  const filteredIntents = intents.filter(
-    (intent) =>
-      intent.name.toLowerCase().match(searchValue.toLowerCase()) ||
-      intent.reply.text.toLowerCase().match(searchValue.toLowerCase()) ||
-      intent.trainingData.expressions.some((expression) =>
-        expression.text.toLowerCase().includes(searchValue.toLowerCase())
-      )
+  const searchValueTrimmedAndLowerCase = deferredSearchValue
+    .trim()
+    .toLowerCase();
+
+  const filteredIntents = useMemo(
+    () =>
+      intents.filter(
+        (intent) =>
+          intent.name.toLowerCase().match(searchValueTrimmedAndLowerCase) ||
+          intent.reply.text
+            .toLowerCase()
+            .match(searchValueTrimmedAndLowerCase) ||
+          intent.trainingData.expressions.some((expression) =>
+            expression.text
+              .toLowerCase()
+              .includes(searchValueTrimmedAndLowerCase)
+          )
+      ),
+    [searchValueTrimmedAndLowerCase]
   );
 
   const handleCtaToggle = (intentId: string) => {
@@ -39,7 +51,8 @@ const IntentsContainer = () => {
 
   const handleBulkSelectionToggle = () => {
     if (selectedIntentIds.length !== intents.length) {
-      setSelectedIntentIds(intents.map((intent) => intent.id));
+      const allIntentIds = intents.map((intent) => intent.id);
+      setSelectedIntentIds(allIntentIds);
     } else {
       setSelectedIntentIds([]);
     }
@@ -48,9 +61,7 @@ const IntentsContainer = () => {
   const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
 
-    // TODO: move to an util fn
-    const regex = /^[a-zA-Z0-9]/;
-    if (regex.test(value) || value === "") {
+    if (hasNoSpecialCharacters(value) || value === "") {
       setSearchValue(value);
     }
   };
@@ -59,30 +70,24 @@ const IntentsContainer = () => {
     <>
       <div className={`${styles.searchAndSelection}`}>
         <Search
-          onSearchChange={handleSearch}
+          onSearch={handleSearch}
           value={searchValue}
           placeholder={`${PLACEHOLDER_FOR_INTENT_SEARCH_INPUT}...`}
         />
         <div className={`${styles.selectionControls}`}>
-          <div data-testid="selectionCount">
-            <b>{selectedIntentIds.length}</b>
-            <small>
-              {" "}
-              / {intents.length} {ADDED}
-            </small>
-          </div>
-          <div
+          <SelectionCount
+            selectedCount={selectedIntentIds.length}
+            totalCount={intents.length}
+          />
+          <BulkSelectionToggle
+            selectedCount={selectedIntentIds.length}
+            totalCount={intents.length}
             onClick={handleBulkSelectionToggle}
-            className={`${styles.bulkSelection}`}
-            data-testid="bulkSelectionToggle"
-          >
-            <FaListUl />
-            {selectedIntentIds.length !== intents.length ? ADD_ALL : REMOVE_ALL}
-          </div>
+          />
         </div>
       </div>
 
-      {filteredIntents.length === 0 ? NO_INTENTS_MESSAGE : null}
+      {filteredIntents?.length === 0 ? NO_INTENTS_MESSAGE : null}
 
       <div className={`${styles.intentsWrapper}`}>
         {filteredIntents?.map((intent) => (
