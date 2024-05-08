@@ -26,10 +26,10 @@ const IntentsContainer = () => {
     () =>
       intents.filter(
         (intent) =>
-          intent.name.toLowerCase().match(searchValueTrimmedAndLowerCase) ||
+          intent.name.toLowerCase().includes(searchValueTrimmedAndLowerCase) ||
           intent.reply.text
             .toLowerCase()
-            .match(searchValueTrimmedAndLowerCase) ||
+            .includes(searchValueTrimmedAndLowerCase) ||
           intent.trainingData.expressions.some((expression) =>
             expression.text
               .toLowerCase()
